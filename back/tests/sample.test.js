@@ -5,3 +5,9 @@ describe('Sample Test', () => {
         expect(true).toBe(true)
     })
 })
+
+describe('Sample Test 2', () => {
+    it('should test that false === false', () => {
+        expect(false).toBe(false)
+    })
+})
