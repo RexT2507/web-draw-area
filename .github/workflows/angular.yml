@@ -28,5 +28,5 @@ jobs:
       working-directory: ./front/web-draw-area
     - run: npm run build --if-present
       working-directory: ./front/web-draw-area
-    - run: npm test
+    - run: npm run test-headless
       working-directory: ./front/web-draw-area
