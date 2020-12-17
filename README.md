@@ -27,3 +27,4 @@ Plateforme de dessin collaborative
 | Supprimer             |      [DEL]      |
 | Développement         |      [DEV]      |
 | Correction            |      [FIX]      |
+| Mise à jour de branche|      [MAJ]      |
