@@ -5,9 +5,9 @@ name: Angular CI
 
 on:
   push:
-    branches: [ main, front ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, front ]
+    branches: [ main ]
 
 jobs:
   build:
