@@ -13,6 +13,8 @@ Plateforme de dessin collaborative
 
 ## Projet côté client
 
+![Angular CI](https://github.com/RexT2507/web-draw-area/workflows/Angular%20CI/badge.svg?branch=main)
+
 + Ouvrez le dossier front
 + Tapez la commande `npm i`
 + Lancer l'application en tapant la commande `ng serve -o`
