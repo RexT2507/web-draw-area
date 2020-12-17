@@ -8,6 +8,9 @@ var app = require('../app');
 var debug = require('debug')('back:server');
 var http = require('http');
 
+const cors = require('cors');
+
+app.use(cors());
 
 /**
  * Get port from environment and store in Express.
@@ -25,7 +28,12 @@ var server = http.createServer(app);
 /**
  * Create Socket
  */
-var io = require('socket.io')(server);
+var io = require('socket.io')(server, {
+  cors: {
+    origin: "http://localhost:4200",
+    methods: ["GET", "POST"]
+  }
+});
 
 var line_history = [];
 
