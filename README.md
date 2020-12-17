@@ -5,11 +5,15 @@ Plateforme de dessin collaborative
 
 ## Projet côté server
 
+![Node.js CI & Test](https://github.com/RexT2507/web-draw-area/workflows/Node.js%20CI%20&%20Test/badge.svg?branch=main)
+
 + Ouvrez le dossier back
 + Tapez la commande `npm i`
 + Lancer l'API REST en tapant la commande `npm start`
 
 ## Projet côté client
+
+![Angular CI](https://github.com/RexT2507/web-draw-area/workflows/Angular%20CI/badge.svg?branch=main)
 
 + Ouvrez le dossier front
 + Tapez la commande `npm i`
@@ -23,3 +27,4 @@ Plateforme de dessin collaborative
 | Supprimer             |      [DEL]      |
 | Développement         |      [DEV]      |
 | Correction            |      [FIX]      |
+| Mise à jour de branche|      [MAJ]      |
