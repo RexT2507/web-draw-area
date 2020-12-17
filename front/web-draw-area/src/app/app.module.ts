@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DrawZoneComponent } from './component/draw-zone/draw-zone.component';
+import { SocketService } from './services/socket/socket.service';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { DrawZoneComponent } from './component/draw-zone/draw-zone.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
