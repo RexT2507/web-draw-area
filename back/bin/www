@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('back:server');
 var http = require('http');
+const io = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,29 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+/**
+ * Create Socket
+ */
+const io = socketIo.listen(server);
+
+const line_history = [];
+
+io.on('connection', function (socket) {
+
+  for (let i in line_history) {
+    socket.emit('draw_line', { line: line_history[i] } );
+  }
+
+  
+  socket.on('draw_line', function (data) {
+
+    line_history.push(data.line);
+
+    io.emit('draw_line', { line: data.line });
+  });
+
+});
 
 /**
  * Listen on provided port, on all network interfaces.
