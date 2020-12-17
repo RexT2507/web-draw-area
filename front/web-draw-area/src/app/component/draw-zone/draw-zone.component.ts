@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { SocketService } from 'src/app/services/socket/socket.service';
 import { Mouse } from '../../object/Mouse';
 
 @Component({
@@ -22,9 +23,11 @@ export class DrawZoneComponent implements OnInit {
 
   public context: CanvasRenderingContext2D;
 
-  constructor() { }
+  constructor(private socketService: SocketService) { }
 
   ngOnInit(): void {
+    this.socketService.setupSocketConnection();
+    
     this.width = 500;
     this.height = 200;
     this.form = {width: this.width, height: this.height};
