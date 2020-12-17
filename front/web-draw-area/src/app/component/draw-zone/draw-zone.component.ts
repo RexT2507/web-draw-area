@@ -27,7 +27,16 @@ export class DrawZoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.socketService.setupSocketConnection();
-    
+    this.socketService.socket.on('draw_line', (data) => {
+      console.log("data", data.line);
+      
+      this.theDraw.push(data.line);
+      if(Object.keys(data).length > 0){
+        this.drawTheFrame(data.line)
+      }
+      
+    })
+
     this.width = 500;
     this.height = 200;
     this.form = {width: this.width, height: this.height};
@@ -102,6 +111,7 @@ export class DrawZoneComponent implements OnInit {
       this.theDraw.push(line);
       
       this.drawTheFrame(line);
+      this.socketService.socket.emit('draw_line', {line: line})
       this.mouse.move = false;
    }
    this.mouse.pos_prev = {x: this.mouse.pos.x, y: this.mouse.pos.y};
