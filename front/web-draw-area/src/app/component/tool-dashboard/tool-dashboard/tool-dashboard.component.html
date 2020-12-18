@@ -1,0 +1,5 @@
+<app-draw-zone></app-draw-zone>
+<input [(ngModel)]="toolService.color" type="color"/>
+<button [ngClass]="{'active': activeTool == 'Pencil'}" (click)="changeTool('Pencil')">Pencil</button>
+<button [ngClass]="{'active': activeTool == 'Eraser'}" (click)="changeTool('Eraser')">Erase</button>
+<input [(ngModel)]="toolService.size" type="number"/>
