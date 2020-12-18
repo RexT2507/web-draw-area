@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 //Component
 import { DrawZoneComponent } from './component/draw-zone/draw-zone.component';
+import { ToolDashboardComponent } from './component/tool-dashboard/tool-dashboard/tool-dashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/drawzone', pathMatch: 'full' },
-  { path: 'drawzone', component: DrawZoneComponent }
+  { path: '', redirectTo: '/dessin', pathMatch: 'full' },
+  { path: 'drawzone', component: DrawZoneComponent },
+  { path: 'dessin', component: ToolDashboardComponent }
 ];
 
 @NgModule({

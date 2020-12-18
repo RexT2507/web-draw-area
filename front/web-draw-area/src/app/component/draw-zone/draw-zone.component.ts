@@ -1,5 +1,8 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Tool } from 'src/app/object/Tool';
+import { Pencil } from 'src/app/object/tools/Pencil';
 import { SocketService } from 'src/app/services/socket/socket.service';
+import { ToolService } from 'src/app/services/tool/tool.service';
 import { Mouse } from '../../object/Mouse';
 
 @Component({
@@ -12,8 +15,9 @@ export class DrawZoneComponent implements OnInit {
   public width: number;
   public height: number;
 
-  public theDraw: Array<{pos: {x: number, y: number}, pos_prev: {x: number, y: number}, width: number, height: number}>
-
+  public theDraw: Array<{pos: {x: number, y: number}, pos_prev: {x: number, y: number}, click: boolean, move: boolean, width: number, height: number, size: number, color: string}>
+  
+  //formulaire resize
   public form: {width: number, height: number};
 
   mouse: Mouse;
@@ -23,19 +27,10 @@ export class DrawZoneComponent implements OnInit {
 
   public context: CanvasRenderingContext2D;
 
-  constructor(private socketService: SocketService) { }
+  constructor(private socketService: SocketService, private toolService: ToolService) { }
 
   ngOnInit(): void {
     this.socketService.setupSocketConnection();
-    this.socketService.socket.on('draw_line', (data) => {
-      console.log("data", data.line);
-      
-      this.theDraw.push(data.line);
-      if(Object.keys(data).length > 0){
-        this.drawTheFrame(data.line)
-      }
-      
-    })
 
     this.width = 500;
     this.height = 200;
@@ -48,6 +43,14 @@ export class DrawZoneComponent implements OnInit {
   ngAfterViewInit(): void {
     this.context = this.drawing.nativeElement.getContext('2d');
     this.resizeDrawZone(this.width, this.height);
+
+    //chargé l'état actuel du dessin
+    this.socketService.socket.on('draw_line', (data) => {
+      this.theDraw.push(data.line);
+      if(Object.keys(data).length > 0){
+        this.toolService.tool.action(this.context, data.line);
+      }
+    })
   }
 
   @HostListener('mousedown', ['$event'])
@@ -67,29 +70,18 @@ export class DrawZoneComponent implements OnInit {
     this.mouse.move = true;
   }
 
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event) {
-  //   this.resizeWindow();
-  //   this.reDraw();
-  // }
-
-  // resizeWindow(){
-  //   this.width = window.innerWidth;
-  //   this.height = window.innerHeight;
-  // }
-
   reDraw(): void{
     
     for(var i=0; i < this.theDraw.length; i++){
-      this.drawTheFrame(this.theDraw[i]);
+      this.toolService.tool.action(this.context, this.theDraw[i]);
     }
   }
 
   resizeDrawZone(w: number, h: number): void{
     this.width = w;
     this.height = h;
-    this.context.canvas.width = w
-    this.context.canvas.height = h
+    this.context.canvas.width = w;
+    this.context.canvas.height = h;
   }
 
   submit(){
@@ -97,24 +89,11 @@ export class DrawZoneComponent implements OnInit {
     this.reDraw();
   }
 
-  drawTheFrame(line: {pos: {x: number, y: number}, pos_prev: {x: number, y: number}, width: number, height: number}): void{
-    this.context.beginPath();
-    this.context.lineWidth = 2;
-    this.context.moveTo(line.pos.x * line.width, line.pos.y * line.height);
-    this.context.lineTo(line.pos_prev.x * line.width, line.pos_prev.y * line.height);
-    this.context.stroke();
-  }
-
   bigLoop(): void{
-    if (this.mouse.click && this.mouse.move && this.mouse.pos_prev) {
-      var line = {pos: this.mouse.pos, pos_prev: this.mouse.pos_prev, width: +this.width, height: +this.height};
-      this.theDraw.push(line);
-      
-      this.drawTheFrame(line);
-      this.socketService.socket.emit('draw_line', {line: line})
-      this.mouse.move = false;
-   }
-   this.mouse.pos_prev = {x: this.mouse.pos.x, y: this.mouse.pos.y};
+
+    this.toolService.tool.actionLoop(this.context, this.mouse);
+
+    this.mouse.pos_prev = {x: this.mouse.pos.x, y: this.mouse.pos.y};
     setTimeout(() => {this.bigLoop()}, 25);
   }
 
