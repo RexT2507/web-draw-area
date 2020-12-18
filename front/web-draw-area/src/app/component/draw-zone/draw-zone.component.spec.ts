@@ -22,4 +22,20 @@ describe('DrawZoneComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`test onClickDown`, () => {
+    component.onClickDown();
+    expect(component.mouse.click).toEqual(true);
+  });
+
+  it(`test onClickDown`, () => {
+    component.onClickUp();
+    expect(component.mouse.click).toEqual(false);
+  });
+
+  it('test resizeDrawZone', () => {
+    component.resizeDrawZone(200, 200);
+    expect(component.context.canvas.width).toEqual(200);
+    expect(component.context.canvas.height).toEqual(200);
+  })
 });

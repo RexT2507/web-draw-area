@@ -13,8 +13,6 @@ export class SocketService {
   constructor() { }
 
   setupSocketConnection() {
-    console.log("setupSocketConnection");
-    
     this.socket = io(environment.SOCKET_ENDPOINT);
   }
 }
