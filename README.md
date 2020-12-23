@@ -1,6 +1,6 @@
 ```diff
 + Green.Like all Byzantine agreement protocols, SCP makes no assumptions about the rational behavior of attackers.
-- Red. Like all Byzantine agreement protocols, SCP makes no assumptions about the rational behavior of attackers.
+- # Like all Byzantine agreement protocols, SCP makes no assumptions about the rational behavior of attackers.
 Black. Like all Byzantine agreement protocols, SCP makes no assumptions about the rational behavior of attackers.
 ```
 
