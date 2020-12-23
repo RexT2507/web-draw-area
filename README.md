@@ -1,4 +1,8 @@
-- Red. ATTENTION LE PROJET A MIGRÉ SUR GITLAB !
+```diff
++ Green.Like all Byzantine agreement protocols, SCP makes no assumptions about the rational behavior of attackers.
+- Red. Like all Byzantine agreement protocols, SCP makes no assumptions about the rational behavior of attackers.
+Black. Like all Byzantine agreement protocols, SCP makes no assumptions about the rational behavior of attackers.
+```
 
 # web-draw-area
 Plateforme de dessin collaborative
