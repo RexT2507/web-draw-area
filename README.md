@@ -1,7 +1,4 @@
-<span class="float-left text-red tooltipped tooltipped-n" aria-label="Does not meet accessibility standards"><%= octicon("alert") %></span>
-<div class="text-orange-light mb-2">
-  .text-orange-light on white
-</div>
+- ATTENTION LE PROJET A MIGRÉ SUR GITLAB !
 
 # web-draw-area
 Plateforme de dessin collaborative
