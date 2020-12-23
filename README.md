@@ -1,4 +1,4 @@
-- ATTENTION LE PROJET A MIGRÉ SUR GITLAB !
+- Red. ATTENTION LE PROJET A MIGRÉ SUR GITLAB !
 
 # web-draw-area
 Plateforme de dessin collaborative
