@@ -1,6 +1,6 @@
 ```diff
 - ATTENTION LE PROJET A MIGRÉ SUR GITLAB
-https://gitlab.com/RexT2507/web-draw-area
+Liens vers le [code source](https://gitlab.com/RexT2507/web-draw-area)
 ```
 
 # web-draw-area
