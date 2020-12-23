@@ -1,7 +1,7 @@
 ```diff
 - ATTENTION LE PROJET A MIGRÉ SUR GITLAB
-Liens vers le [code source](https://gitlab.com/RexT2507/web-draw-area)
 ```
+Liens vers le nouveau [code source](https://gitlab.com/RexT2507/web-draw-area)
 
 # web-draw-area
 Plateforme de dessin collaborative
